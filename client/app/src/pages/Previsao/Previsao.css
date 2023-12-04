@@ -1,0 +1,5 @@
+.content-previsao {
+
+    display: flex;
+    flex-direction: column;
+}
