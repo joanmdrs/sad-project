@@ -1,35 +1,53 @@
-import React from 'react';
-import { Breadcrumb, Layout, theme } from 'antd';
+import React, { useState } from 'react';
+import './LayoutContainer.css';
+import { Breadcrumb, Button, Layout, theme } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, HomeOutlined } from '@ant-design/icons';
 import Routes from '../../routes';
 import MenuBar from '../Menu/Menu';
+import img from "../../assets/grafico.png";
 
 const { Header, Content, Sider } = Layout;
 
 const LayoutContainer = () => {
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
   return (
+
     <Layout>
-      <Header
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <div className="demo-logo">
-          
-        </div>
-        
+      <Header style={{color: '#fff', borderBottom: '1px solid #fff'}} className='content-header'>
+        <img src={img} alt="Logo do Sistema de Previsões"/>
+        <h4 style={{ margin: 0 }}>Sistema de Previsões</h4>
       </Header>
       <Layout>
         <Sider
-          width={200}
+          collapsible
+          collapsed={collapsed}
+          onCollapse={toggleCollapsed}
           style={{
-            background: colorBgContainer,
+            height: '100vh'
           }}
         >
-          <MenuBar />
+          <div style={{
+            padding: '10px'
+          }}> 
+            <Button
+              type="primary"
+              onClick={toggleCollapsed}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>'
+          </div>
+        
+          <MenuBar collapsed={collapsed}/>
         </Sider>
         <Layout
           style={{
@@ -41,8 +59,7 @@ const LayoutContainer = () => {
               margin: '16px 0',
             }}
           >
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>Previsões</Breadcrumb.Item>
+            <Breadcrumb.Item>Realizando previsões</Breadcrumb.Item>
           </Breadcrumb>
           <Content
             style={{

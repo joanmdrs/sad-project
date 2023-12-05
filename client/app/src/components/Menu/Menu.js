@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, HomeOutlined } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
+import { FaPersonRunning } from "react-icons/fa6";
+import { GoGraph } from "react-icons/go";
 
 function getItem(label, key, icon, children, type, onClick) {
   return {
@@ -15,11 +17,12 @@ function getItem(label, key, icon, children, type, onClick) {
 
 const items = [
   getItem('Home', '1', <HomeOutlined />, null, null, () => { window.location.href="/" }),
-  getItem('Previsão de alunos', 'sub1', <PieChartOutlined />, null, null, () => { window.location.href="/previsoes"  }),
+  getItem('Previsão de alunos', 'sub1', <GoGraph />, null, null, () => { window.location.href="/previsoes"  }),
+  getItem('Evasão', 'sub2', <FaPersonRunning />, null, null, () => {window.location.href="/evasao"})
 ];
 
-const MenuBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const MenuBar = ({collapsed}) => {
+  
 
   const handleMenuClick = (e) => {
     const clickedItem = items.find(item => item.key === e.key);
@@ -28,34 +31,20 @@ const MenuBar = () => {
     }
   };
 
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
+
 
   return (
     <div style={{
       padding: '10px',
     }}>
-      <Button
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
+  
       <Menu
+        mode="inline"
+        theme="dark"
+        inlineCollapsed={collapsed}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
-        mode="inline"
-        theme="light"
-        inlineCollapsed={collapsed}
         onClick={handleMenuClick}
-
-        style={{
-          padding: '10px',
-        }}
       >
         {items.map(item => (
           <Menu.Item key={item.key} icon={item.icon}>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Previsao.css";
 import { Form, Input, Select, Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
@@ -9,11 +10,11 @@ const Previsao = () => {
     return (
 
         <div className="content-previsao">
-            <h3> Realizar Previsão </h3>
-            <p> Estimar a quantidade de alunos prevista para os próximos semestres  </p>
-            <Form
-                name="meuFormulario"
-                    >
+            <div className="title-previsao"> 
+                <p>Estimar a quantidade de alunos prevista para os próximos semestres</p>
+            </div>
+        
+            <Form name="meuFormulario" layout="vertical">
                 <Form.Item
                     label="Selecione o curso"
                     name="curso"
@@ -32,7 +33,7 @@ const Previsao = () => {
                     name="periodo"
                     rules={[{ required: true, message: 'Por favor, informe o período!' }]}
                 >
-                    <Input placeholder="Informe o período que deseja prever" />
+                    <Input placeholder="Informe o período que deseja prever. Ex.: 2024" />
                 </Form.Item>
 
                 <Form.Item
@@ -59,7 +60,7 @@ const Previsao = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Form.Item>
                     <Button type="primary" htmlType="submit">
                     Enviar
                     </Button>
