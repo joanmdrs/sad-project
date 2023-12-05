@@ -1,25 +1,9 @@
 import React from 'react';
-import { LineChartOutlined} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Layout, theme } from 'antd';
 import Routes from '../../routes';
 import MenuBar from '../Menu/Menu';
 
 const { Header, Content, Sider } = Layout;
-
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
-
-const items2 = [LineChartOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: "Estimativa de Alunos"
-    
-  };
-});
 
 const LayoutContainer = () => {
   const {
@@ -33,7 +17,9 @@ const LayoutContainer = () => {
           alignItems: 'center',
         }}
       >
-        <div className="demo-logo" />
+        <div className="demo-logo">
+          
+        </div>
         
       </Header>
       <Layout>
@@ -43,17 +29,6 @@ const LayoutContainer = () => {
             background: colorBgContainer,
           }}
         >
-          {/* <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{
-              height: '100%',
-              borderRight: 0,
-            }}
-            items={items2}
-          /> */}
-
           <MenuBar />
         </Sider>
         <Layout

@@ -10,7 +10,7 @@ const Home = () => {
 
     return (
         <div> 
-            <Button onClick={handlePrevisao}>
+            <Button onClick={handlePrevisao} type="primary" size="medium">
                 Realizar Previsão
             </Button>
         </div>
